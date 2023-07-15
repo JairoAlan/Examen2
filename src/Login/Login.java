@@ -85,7 +85,7 @@ public class Login extends javax.swing.JFrame {
                             lblResuCon.setText("Bienvenido: "+ nombre);
                         }
                         else{
-                            lblResuCon.setText("Hubo un problema, verifica usuario y contraseña");
+                            
                         }
                             
                         
