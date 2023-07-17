@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Login;
+
 import com.devazt.networking.HttpClient;
 import com.devazt.networking.OnHttpRequestComplete;
 import com.devazt.networking.Response;
@@ -27,6 +28,10 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel5 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtEstado = new javax.swing.JTextField();
         lblResuCon = new javax.swing.JLabel();
         txtClave = new javax.swing.JPasswordField();
         btnIngresar = new javax.swing.JButton();
@@ -37,9 +42,27 @@ public class Login extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel5.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel5.setText("Estado 3 = Otro");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
+
+        jLabel4.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel4.setText("Estado 2 = Vendedor");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
+
+        jLabel3.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel3.setText("Estado 1 = Admin");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        txtEstado.setForeground(new java.awt.Color(153, 153, 153));
+        txtEstado.setText("Estado");
+        getContentPane().add(txtEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, 70, -1));
+
         lblResuCon.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         lblResuCon.setForeground(new java.awt.Color(204, 204, 204));
-        getContentPane().add(lblResuCon, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, 280, 20));
+        lblResuCon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblResuCon.setText("\"\"");
+        getContentPane().add(lblResuCon, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 280, 20));
 
         txtClave.setText("1234");
         getContentPane().add(txtClave, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 220, -1));
@@ -56,13 +79,13 @@ public class Login extends javax.swing.JFrame {
         txtUser.setForeground(new java.awt.Color(153, 153, 153));
         txtUser.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtUser.setText("Escribe el Usuario");
-        getContentPane().add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 220, -1));
+        getContentPane().add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 120, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Log-1.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Fondo_Log.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, 550));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 480));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -72,35 +95,47 @@ public class Login extends javax.swing.JFrame {
         HttpClient cliente = new HttpClient(new OnHttpRequestComplete() {
             @Override
             public void onComplete(Response status) {
-                if(status.isSuccess())
-                {
+                if (status.isSuccess()) {
                     try {
                         JSONObject Usuarios = new JSONObject(status.getResult());
-                        
+
                         String usuarioBase = Usuarios.getJSONObject("0").get("usuario").toString();
                         String claveBase = Usuarios.getJSONObject("0").get("clave").toString();
-                        if(txtUser.getText().toString().equals(usuarioBase)&& txtClave.getText().toString().equals(claveBase ))
-                        {
-                            String nombre = Usuarios.getJSONObject("0").get("nombre").toString();
-                            lblResuCon.setText("Bienvenido: "+ nombre);
+                        String estadoBase = Usuarios.getJSONObject("0").get("estado").toString();
+                        if (txtUser.getText().toString().equals(usuarioBase)
+                                && txtClave.getText().toString().equals(claveBase)
+                                && txtEstado.getText().toString().equals(estadoBase)) {
+                            if (estadoBase.contains("1")) 
+                            {
+                                String nombre = Usuarios.getJSONObject("0").get("nombre").toString();
+                                lblResuCon.setText("Bienvenid@: " + nombre);
+                                Menu ventana = new Menu();
+                                ventana.setVisible(true);
+                                
+                            }
+                            else if(estadoBase.contains("2"))
+                            {
+                                String nombre = Usuarios.getJSONObject("0").getString("nombre").toString();
+                                lblResuCon.setText("Bienvenid@: " + nombre);
+                                Menu ventana = new Menu();
+                                ventana.setVisible(true);
+                            }
+                        } else {
+
                         }
-                        else{
-                            
-                        }
-                            
-                        
+
                     } catch (JSONException e) {
                     }
- 
+
                 }
                 throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-            }       
+            }
         });
-        
+
         String usuario = txtUser.getText().toString();
         String clave = txtClave.getText().toString();
-        
-        cliente.excecute("http://localhost/examAPI/login.php?usuario="+usuario+"&clave="+clave+"");
+
+        cliente.excecute("http://localhost/examAPI/login.php?usuario=" + usuario + "&clave=" + clave + "");
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     /**
@@ -142,8 +177,12 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton btnIngresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel lblResuCon;
     private javax.swing.JPasswordField txtClave;
+    private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 }

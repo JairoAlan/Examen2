@@ -27,19 +27,48 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        menu_reg = new javax.swing.JMenu();
+        menu_AgUs = new javax.swing.JMenuItem();
+        menu_Ag_Pro = new javax.swing.JMenuItem();
+        menu_Act_Inv = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/agregar2.png"))); // NOI18N
-        jMenu1.setText("Registro producto");
-        jMenuBar1.add(jMenu1);
+        menu_reg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/agregar2.png"))); // NOI18N
+        menu_reg.setText("Registro producto");
 
-        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/act2.png"))); // NOI18N
-        jMenu2.setText("Actualizacion de inventario");
-        jMenuBar1.add(jMenu2);
+        menu_AgUs.setText("Agregar Usuario");
+        menu_AgUs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_AgUsActionPerformed(evt);
+            }
+        });
+        menu_reg.add(menu_AgUs);
+
+        menu_Ag_Pro.setText("Agregar Producto");
+        menu_Ag_Pro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_Ag_ProActionPerformed(evt);
+            }
+        });
+        menu_reg.add(menu_Ag_Pro);
+
+        jMenuBar1.add(menu_reg);
+
+        menu_Act_Inv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/act2.png"))); // NOI18N
+        menu_Act_Inv.setText("Actualizacion ");
+
+        jMenuItem1.setText("Actualizar Inventario");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        menu_Act_Inv.add(jMenuItem1);
+
+        jMenuBar1.add(menu_Act_Inv);
 
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/punto2.png"))); // NOI18N
         jMenu3.setText("Ventas Producto");
@@ -60,6 +89,27 @@ public class Menu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void menu_Ag_ProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_Ag_ProActionPerformed
+        // Abre El submenu Agregar_Usuario
+        Agregar_Producto ventana = new Agregar_Producto();
+        ventana.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_menu_Ag_ProActionPerformed
+
+    private void menu_AgUsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_AgUsActionPerformed
+        // Abre el submenu Regitrar
+        Regitrar ventana = new Regitrar();
+        ventana.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_menu_AgUsActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // Abre el submenu Actualizar_inventario
+        Actualizar_inventario ventana = new Actualizar_inventario();
+        ventana.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -97,9 +147,12 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenu menu_Act_Inv;
+    private javax.swing.JMenuItem menu_AgUs;
+    private javax.swing.JMenuItem menu_Ag_Pro;
+    private javax.swing.JMenu menu_reg;
     // End of variables declaration//GEN-END:variables
 }
