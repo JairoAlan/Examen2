@@ -97,28 +97,47 @@ public class Login extends javax.swing.JFrame {
             public void onComplete(Response status) {
                 if (status.isSuccess()) {
                     try {
+                        //Se crea un JSONObject que crea un usuario de un "Array o diccionario" que contiene los siguientes datos:
                         JSONObject Usuarios = new JSONObject(status.getResult());
-
+                        
+                        // Obtiene el usuario y lo guarda en la variable de tipo string "usuarioBase"
                         String usuarioBase = Usuarios.getJSONObject("0").get("usuario").toString();
+                        // Obtiene la clave y lo guarda en la variable de tipo string "claveBase"
                         String claveBase = Usuarios.getJSONObject("0").get("clave").toString();
+                        // Obtiene el estado y lo guarda en la variable de tipo string "estadoBase"
                         String estadoBase = Usuarios.getJSONObject("0").get("estado").toString();
+                        // Si los textfields tienen esos datos y las variables tambien...
                         if (txtUser.getText().toString().equals(usuarioBase)
                                 && txtClave.getText().toString().equals(claveBase)
                                 && txtEstado.getText().toString().equals(estadoBase)) {
+                            //Verifica tambien el estado y los clasifica, 1 = admin, 2 0 Vendedor, 3 = otro...
                             if (estadoBase.contains("1")) 
                             {
+                                //El estado 1 es administrador, y tiene acceso a todos los menus
                                 String nombre = Usuarios.getJSONObject("0").get("nombre").toString();
+                                //Da la bienvenida en un label que esta en el login
                                 lblResuCon.setText("Bienvenid@: " + nombre);
+                                // Crea la ventana y la pone visible.
                                 Menu ventana = new Menu();
                                 ventana.setVisible(true);
                                 
                             }
                             else if(estadoBase.contains("2"))
                             {
-                                String nombre = Usuarios.getJSONObject("0").getString("nombre").toString();
+                                //En el estado 2, es para el vendedor, y solo tiene acceso a la venta de productos
+                                String nombre = Usuarios.getJSONObject("0").get("nombre").toString();
                                 lblResuCon.setText("Bienvenid@: " + nombre);
                                 Menu ventana = new Menu();
                                 ventana.setVisible(true);
+                                ventana.deshabilitarMenusVendedor();
+                            }
+                            else if(estadoBase.contains("3"))
+                            {
+                                String nombre = Usuarios.getJSONObject("0").get("nombre").toString();
+                                lblResuCon.setText("Bienvenid@: "+ nombre);
+                                Menu ventana = new Menu();
+                                ventana.setVisible(true);
+                                ventana.deshabilitarMenusOtro();
                             }
                         } else {
 
@@ -128,13 +147,14 @@ public class Login extends javax.swing.JFrame {
                     }
 
                 }
-                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
             }
         });
-
+        
+        //Estas variables guardan la informacion que ingresa el usuario en los textfield
         String usuario = txtUser.getText().toString();
         String clave = txtClave.getText().toString();
-
+        // Y se ejecutan en la API
         cliente.excecute("http://localhost/examAPI/login.php?usuario=" + usuario + "&clave=" + clave + "");
     }//GEN-LAST:event_btnIngresarActionPerformed
 

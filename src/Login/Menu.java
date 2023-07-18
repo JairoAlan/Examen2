@@ -4,6 +4,11 @@
  */
 package Login;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+
 /**
  *
  * @author jairo
@@ -13,7 +18,11 @@ public class Menu extends javax.swing.JFrame {
     /**
      * Creates new form Menu
      */
+    FondoPanel fondo = new FondoPanel();
+
     public Menu() {
+
+        this.setContentPane(fondo);
         initComponents();
     }
 
@@ -32,12 +41,13 @@ public class Menu extends javax.swing.JFrame {
         menu_Ag_Pro = new javax.swing.JMenuItem();
         menu_Act_Inv = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        menu_vent = new javax.swing.JMenu();
+        menu_Ven_Prod = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         menu_reg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/agregar2.png"))); // NOI18N
-        menu_reg.setText("Registro producto");
+        menu_reg.setText("Registro");
 
         menu_AgUs.setText("Agregar Usuario");
         menu_AgUs.addActionListener(new java.awt.event.ActionListener() {
@@ -70,9 +80,18 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(menu_Act_Inv);
 
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/punto2.png"))); // NOI18N
-        jMenu3.setText("Ventas Producto");
-        jMenuBar1.add(jMenu3);
+        menu_vent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/punto2.png"))); // NOI18N
+        menu_vent.setText("Ventas Producto");
+
+        menu_Ven_Prod.setText("Venta de Productos");
+        menu_Ven_Prod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_Ven_ProdActionPerformed(evt);
+            }
+        });
+        menu_vent.add(menu_Ven_Prod);
+
+        jMenuBar1.add(menu_vent);
 
         setJMenuBar(jMenuBar1);
 
@@ -80,11 +99,11 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 648, Short.MAX_VALUE)
+            .addGap(0, 721, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 358, Short.MAX_VALUE)
+            .addGap(0, 364, Short.MAX_VALUE)
         );
 
         pack();
@@ -110,6 +129,13 @@ public class Menu extends javax.swing.JFrame {
         ventana.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void menu_Ven_ProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_Ven_ProdActionPerformed
+        //Abre el submenu Venta, para la venta de productos
+        Venta ventana = new Venta();
+        ventana.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_menu_Ven_ProdActionPerformed
 
     /**
      * @param args the command line arguments
@@ -146,13 +172,44 @@ public class Menu extends javax.swing.JFrame {
         });
     }
 
+    //Agrega un fondo de pantalla y lo hace responcible...
+    class FondoPanel extends JPanel {
+
+        private Image imagen;
+
+        @Override
+        public void paint(Graphics g) {
+            imagen = new ImageIcon(getClass().getResource("/Iconos/azul.jpg")).getImage();
+
+            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+
+            setOpaque(false);
+
+            super.paint(g);
+        }
+    }
+
+    //Deshabilita los menus, actualizar y registrar, para los vendedores.
+    public void deshabilitarMenusVendedor(){
+        menu_Act_Inv.setEnabled(false);
+        menu_reg.setEnabled(false);
+    }
+    
+    //Deshabilita los menus Registrar y ventas, para Otro.
+    public void deshabilitarMenusOtro(){
+        menu_reg.setEnabled(false);
+        menu_vent.setEnabled(false);
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu menu_Act_Inv;
     private javax.swing.JMenuItem menu_AgUs;
     private javax.swing.JMenuItem menu_Ag_Pro;
+    private javax.swing.JMenuItem menu_Ven_Prod;
     private javax.swing.JMenu menu_reg;
+    private javax.swing.JMenu menu_vent;
     // End of variables declaration//GEN-END:variables
 }
