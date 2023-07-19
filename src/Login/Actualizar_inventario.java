@@ -62,15 +62,15 @@ public class Actualizar_inventario extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel1.setForeground(new java.awt.Color(204, 204, 204));
         jLabel1.setText("Ingresa el id del producto para actualizar la cantidad en inventario");
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel2.setForeground(new java.awt.Color(204, 204, 204));
         jLabel2.setText("Id Producto:");
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel3.setForeground(new java.awt.Color(204, 204, 204));
         jLabel3.setText("Cantidad para agregar al inventario:");
 
         btnActualizar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -82,9 +82,10 @@ public class Actualizar_inventario extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel4.setForeground(new java.awt.Color(204, 204, 204));
         jLabel4.setText("Nombre:");
 
+        btmBusProd.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btmBusProd.setText("Buscar Producto");
         btmBusProd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,39 +94,39 @@ public class Actualizar_inventario extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel5.setForeground(new java.awt.Color(204, 204, 204));
         jLabel5.setText("Marca:");
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel6.setForeground(new java.awt.Color(204, 204, 204));
         jLabel6.setText("Presentacion:");
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel7.setForeground(new java.awt.Color(204, 204, 204));
         jLabel7.setText("Precio:");
 
         lblNombre.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lblNombre.setForeground(new java.awt.Color(153, 153, 153));
+        lblNombre.setForeground(new java.awt.Color(204, 204, 204));
         lblNombre.setText("\"\"");
 
         lblMarca.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lblMarca.setForeground(new java.awt.Color(153, 153, 153));
+        lblMarca.setForeground(new java.awt.Color(204, 204, 204));
         lblMarca.setText("\"\"");
 
         lblPresen.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lblPresen.setForeground(new java.awt.Color(153, 153, 153));
+        lblPresen.setForeground(new java.awt.Color(204, 204, 204));
         lblPresen.setText("\"\"");
 
         lblPrecio.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lblPrecio.setForeground(new java.awt.Color(153, 153, 153));
+        lblPrecio.setForeground(new java.awt.Color(204, 204, 204));
         lblPrecio.setText("\"\"");
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel8.setForeground(new java.awt.Color(204, 204, 204));
         jLabel8.setText("Cantidad en existencia:");
 
         lblCantEx.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lblCantEx.setForeground(new java.awt.Color(153, 153, 153));
+        lblCantEx.setForeground(new java.awt.Color(204, 204, 204));
         lblCantEx.setText("\"\"");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -133,7 +134,7 @@ public class Actualizar_inventario extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
+                .addContainerGap(21, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
