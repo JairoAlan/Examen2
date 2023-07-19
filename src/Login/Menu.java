@@ -43,12 +43,17 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         menu_vent = new javax.swing.JMenu();
         menu_Ven_Prod = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        menu_Consul_Prod = new javax.swing.JMenuItem();
+        menu_Consul_Usu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         menu_reg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/agregar2.png"))); // NOI18N
         menu_reg.setText("Registro");
+        menu_reg.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
 
+        menu_AgUs.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         menu_AgUs.setText("Agregar Usuario");
         menu_AgUs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -57,6 +62,7 @@ public class Menu extends javax.swing.JFrame {
         });
         menu_reg.add(menu_AgUs);
 
+        menu_Ag_Pro.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         menu_Ag_Pro.setText("Agregar Producto");
         menu_Ag_Pro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,7 +75,9 @@ public class Menu extends javax.swing.JFrame {
 
         menu_Act_Inv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/act2.png"))); // NOI18N
         menu_Act_Inv.setText("Actualizacion ");
+        menu_Act_Inv.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
 
+        jMenuItem1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jMenuItem1.setText("Actualizar Inventario");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,7 +90,9 @@ public class Menu extends javax.swing.JFrame {
 
         menu_vent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/punto2.png"))); // NOI18N
         menu_vent.setText("Ventas Producto");
+        menu_vent.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
 
+        menu_Ven_Prod.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         menu_Ven_Prod.setText("Venta de Productos");
         menu_Ven_Prod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,17 +103,36 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(menu_vent);
 
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/bus1.png"))); // NOI18N
+        jMenu1.setText("Consultas");
+        jMenu1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+
+        menu_Consul_Prod.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        menu_Consul_Prod.setText("Consulta Productos");
+        menu_Consul_Prod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_Consul_ProdActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menu_Consul_Prod);
+
+        menu_Consul_Usu.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        menu_Consul_Usu.setText("Consulta Usuarios");
+        jMenu1.add(menu_Consul_Usu);
+
+        jMenuBar1.add(jMenu1);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 721, Short.MAX_VALUE)
+            .addGap(0, 720, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 364, Short.MAX_VALUE)
+            .addGap(0, 361, Short.MAX_VALUE)
         );
 
         pack();
@@ -136,6 +165,13 @@ public class Menu extends javax.swing.JFrame {
         ventana.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_menu_Ven_ProdActionPerformed
+
+    private void menu_Consul_ProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_Consul_ProdActionPerformed
+        // Abre el submenu de consulta productos
+        Consulta_Prod ventana = new Consulta_Prod();
+        ventana.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_menu_Consul_ProdActionPerformed
 
     /**
      * @param args the command line arguments
@@ -203,11 +239,14 @@ public class Menu extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu menu_Act_Inv;
     private javax.swing.JMenuItem menu_AgUs;
     private javax.swing.JMenuItem menu_Ag_Pro;
+    private javax.swing.JMenuItem menu_Consul_Prod;
+    private javax.swing.JMenuItem menu_Consul_Usu;
     private javax.swing.JMenuItem menu_Ven_Prod;
     private javax.swing.JMenu menu_reg;
     private javax.swing.JMenu menu_vent;
