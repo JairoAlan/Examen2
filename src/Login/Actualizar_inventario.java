@@ -12,6 +12,8 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -23,13 +25,15 @@ public class Actualizar_inventario extends javax.swing.JFrame {
     /**
      * Creates new form Actualizar_inventario
      */
-    
-   FondoPanel fondo = new FondoPanel();
-    
+    FondoPanel fondo = new FondoPanel();
+    Menu ventana = new Menu();
+    Login obj = new Login();
+
     public Actualizar_inventario() {
-        
+        this.setLocationRelativeTo(null);
         this.setContentPane(fondo);
         initComponents();
+        llenarJtable();
     }
 
     /**
@@ -58,6 +62,9 @@ public class Actualizar_inventario extends javax.swing.JFrame {
         lblPrecio = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         lblCantEx = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtProduct = new javax.swing.JTable();
+        btnRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -129,12 +136,33 @@ public class Actualizar_inventario extends javax.swing.JFrame {
         lblCantEx.setForeground(new java.awt.Color(204, 204, 204));
         lblCantEx.setText("\"\"");
 
+        jtProduct.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jtProduct);
+
+        btnRegresar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btnRegresar.setText("Regresar");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
+                .addContainerGap(25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -160,49 +188,59 @@ public class Actualizar_inventario extends javax.swing.JFrame {
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(btnActualizar)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnRegresar))
                             .addGap(18, 18, 18)
                             .addComponent(txtCantidad_Prod, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(22, 22, 22))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtId_Prod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btmBusProd)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(lblNombre))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(lblMarca))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(lblPresen))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(lblPrecio))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(lblCantEx))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCantidad_Prod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(38, 38, 38)
-                .addComponent(btnActualizar)
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtId_Prod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btmBusProd)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(lblNombre))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(lblMarca))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(lblPresen))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(lblPrecio))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(lblCantEx))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtCantidad_Prod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(38, 38, 38)
+                        .addComponent(btnActualizar)
+                        .addGap(34, 34, 34)
+                        .addComponent(btnRegresar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -235,47 +273,49 @@ public class Actualizar_inventario extends javax.swing.JFrame {
         HttpClient cliente = new HttpClient(new OnHttpRequestComplete() {
             @Override
             public void onComplete(Response status) {
-                
-                
+
                 // Este método se llama cuando la solicitud HTTP se completa
-                try 
-                {
+                try {
                     JSONObject producto = new JSONObject(status.getResult());
                     String nombreBase = producto.getJSONObject("0").get("Nombre").toString();
                     String marcaBase = producto.getJSONObject("0").get("Marca").toString();
                     String presenBase = producto.getJSONObject("0").get("Presentacion").toString();
                     String precioBase = producto.getJSONObject("0").get("Precio").toString();
                     String cantidadBase = producto.getJSONObject("0").get("Cantidad").toString();
-                    
-                    if(nombreBase != null && marcaBase != null && presenBase != null && precioBase != null)
-                    {
+
+                    if (nombreBase != null && marcaBase != null && presenBase != null && precioBase != null) {
                         lblNombre.setText(nombreBase);
                         lblMarca.setText(marcaBase);
                         lblPresen.setText(presenBase);
                         lblPrecio.setText(precioBase);
                         lblCantEx.setText(cantidadBase);
-                    }
-                    else
-                    {
+                    } else {
                         JOptionPane.showMessageDialog(null, "No hay en existencia el producto en la base de datos. ");
                     }
-                    
-                } 
-                catch (Exception e) 
-                {
-                    
+
+                } catch (Exception e) {
+
                 }
                 throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
             }
         });
-        
+
         String id_prod = txtId_Prod.getText().toString();
-        cliente.excecute("http://localhost/examAPI/buscar.php?Id_Prod="+id_prod+"");
+        cliente.excecute("http://localhost/examAPI/buscar.php?Id_Prod=" + id_prod + "");
     }//GEN-LAST:event_btmBusProdActionPerformed
 
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        // Regresa al menu
+
+        
+        
+
+
+    }//GEN-LAST:event_btnRegresarActionPerformed
+
     /**
-     * @param args the command line arguments
-     */
+         * @param args the command line arguments
+         */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -307,20 +347,71 @@ public class Actualizar_inventario extends javax.swing.JFrame {
             }
         });
     }
-    
-    class FondoPanel extends JPanel
-    {
+
+    public void llenarJtable() {
+        try {
+            // Crear instancia de cliente HTTP
+            HttpClient cliente = new HttpClient(new OnHttpRequestComplete() {
+                @Override
+                public void onComplete(Response status) {
+                    // Si el estado de la conexion tiene exito
+                    if (status.isSuccess()) {
+                        try {
+                            // Se crea un objeto JSON llamado productos, y obtiene todos los resultados de la consulta
+                            JSONObject productos = new JSONObject(status.getResult());
+                            // Se crea un "modelo" de la tabla
+                            DefaultTableModel modelo = new DefaultTableModel();
+                            // Se le agregan los nombres que tendran las columnas
+                            modelo.addColumn("Id Producto");
+                            modelo.addColumn("Nombre");
+                            modelo.addColumn("Marca");
+                            modelo.addColumn("Presentacion");
+                            modelo.addColumn("Precio");
+                            modelo.addColumn("Cantidad");
+
+                            // a la tabla que se le creo, se le agrega las "propiedades" de modelo
+                            jtProduct.setModel(modelo);
+
+                            // Este for no para hasta que tenga un error o no tenga nada la tabla
+                            for (int i = 0;; i++) {
+                                // Se crea un objeto "Arreglo", que recibira toda la informacion de la consulta y la asigna.
+                                Object[] obj = new Object[6];
+                                obj[0] = productos.getJSONObject("" + i + "").get("Id_Prod").toString();
+                                obj[1] = productos.getJSONObject("" + i + "").get("Nombre").toString();
+                                obj[2] = productos.getJSONObject("" + i + "").get("Marca").toString();
+                                obj[3] = productos.getJSONObject("" + i + "").get("Presentacion").toString();
+                                obj[4] = productos.getJSONObject("" + i + "").get("Precio").toString();
+                                obj[5] = productos.getJSONObject("" + i + "").get("Cantidad").toString();
+                                modelo.addRow(obj);
+                            }
+
+                        } catch (JSONException e) {
+
+                        }
+
+                    }
+                }
+            });
+
+            // Y se ejecutan en la API
+            cliente.excecute("http://localhost/examAPI/buscar_prod_id_all.php");
+        } catch (Exception e) {
+
+        }
+    }
+
+    class FondoPanel extends JPanel {
+
         private Image imagen;
-        
+
         @Override
-        public void paint(Graphics g)
-        {
+        public void paint(Graphics g) {
             imagen = new ImageIcon(getClass().getResource("/Iconos/azul.jpg")).getImage();
-            
+
             g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
-            
+
             setOpaque(false);
-            
+
             super.paint(g);
         }
     }
@@ -328,6 +419,7 @@ public class Actualizar_inventario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btmBusProd;
     private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -336,6 +428,8 @@ public class Actualizar_inventario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jtProduct;
     private javax.swing.JLabel lblCantEx;
     private javax.swing.JLabel lblMarca;
     private javax.swing.JLabel lblNombre;

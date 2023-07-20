@@ -28,6 +28,7 @@ public class Consulta_Prod extends javax.swing.JFrame {
     FondoPanel fondo = new FondoPanel();
     
     public Consulta_Prod() {
+        this.setLocationRelativeTo(null);
         this.setContentPane(fondo);
         initComponents();
         llenarJtable();

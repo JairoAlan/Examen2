@@ -27,7 +27,7 @@ public class Regitrar extends javax.swing.JFrame {
     
     
     public Regitrar() {
-        
+        this.setLocationRelativeTo(null);
         this.setContentPane(fondo);
         initComponents();
     }

@@ -29,6 +29,7 @@ public class Agregar_Producto extends javax.swing.JFrame {
     FondoPanel fondo = new FondoPanel();
     
     public Agregar_Producto() {
+        this.setLocationRelativeTo(null);
         this.setContentPane(fondo);
         initComponents();
     }

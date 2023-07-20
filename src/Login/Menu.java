@@ -21,7 +21,7 @@ public class Menu extends javax.swing.JFrame {
     FondoPanel fondo = new FondoPanel();
 
     public Menu() {
-
+        this.setLocationRelativeTo(null);
         this.setContentPane(fondo);
         initComponents();
     }
@@ -43,7 +43,7 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         menu_vent = new javax.swing.JMenu();
         menu_Ven_Prod = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
+        Menu_Consultas = new javax.swing.JMenu();
         menu_Consul_Prod = new javax.swing.JMenuItem();
         menu_Consul_Usu = new javax.swing.JMenuItem();
 
@@ -103,9 +103,9 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(menu_vent);
 
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/bus1.png"))); // NOI18N
-        jMenu1.setText("Consultas");
-        jMenu1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        Menu_Consultas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/bus1.png"))); // NOI18N
+        Menu_Consultas.setText("Consultas");
+        Menu_Consultas.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
 
         menu_Consul_Prod.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         menu_Consul_Prod.setText("Consulta Productos");
@@ -114,13 +114,18 @@ public class Menu extends javax.swing.JFrame {
                 menu_Consul_ProdActionPerformed(evt);
             }
         });
-        jMenu1.add(menu_Consul_Prod);
+        Menu_Consultas.add(menu_Consul_Prod);
 
         menu_Consul_Usu.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         menu_Consul_Usu.setText("Consulta Usuarios");
-        jMenu1.add(menu_Consul_Usu);
+        menu_Consul_Usu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_Consul_UsuActionPerformed(evt);
+            }
+        });
+        Menu_Consultas.add(menu_Consul_Usu);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(Menu_Consultas);
 
         setJMenuBar(jMenuBar1);
 
@@ -172,6 +177,13 @@ public class Menu extends javax.swing.JFrame {
         ventana.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_menu_Consul_ProdActionPerformed
+
+    private void menu_Consul_UsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_Consul_UsuActionPerformed
+        // Abre el submenu de consulta de usuarios
+        Consulta_Usuarios ventana = new Consulta_Usuarios();
+        ventana.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_menu_Consul_UsuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -225,21 +237,23 @@ public class Menu extends javax.swing.JFrame {
         }
     }
 
-    //Deshabilita los menus, actualizar y registrar, para los vendedores.
+    //Deshabilita los menus, actualizar, registrar y consultas, para los vendedores.
     public void deshabilitarMenusVendedor(){
         menu_Act_Inv.setEnabled(false);
         menu_reg.setEnabled(false);
+        Menu_Consultas.setEnabled(false);
     }
     
-    //Deshabilita los menus Registrar y ventas, para Otro.
+    //Deshabilita los menus Registrar, ventas y consulta de usuarios, para Otro.
     public void deshabilitarMenusOtro(){
         menu_reg.setEnabled(false);
         menu_vent.setEnabled(false);
+        menu_Consul_Usu.setEnabled(false);
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu Menu_Consultas;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu menu_Act_Inv;

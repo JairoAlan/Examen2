@@ -15,7 +15,19 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
+    
+    private int estado = 0;
+    
+    public int getEstado(){
+        return this.estado;
+    }
+    
+    public void setEstado(int num){
+        this.estado = num;
+    }
+    
     public Login() {
+        this.setLocationRelativeTo(null);
         initComponents();
     }
 
@@ -120,9 +132,11 @@ public class Login extends javax.swing.JFrame {
                                 String nombre = Usuarios.getJSONObject("0").get("nombre").toString();
                                 //Da la bienvenida en un label que esta en el login
                                 lblResuCon.setText("Bienvenid@: " + nombre);
+                                setEstado(1);
                                 // Crea la ventana y la pone visible.
                                 Menu ventana = new Menu();
                                 ventana.setVisible(true);
+                                
                                 
                             }
                             else if(estadoBase.contains("2"))
@@ -130,17 +144,21 @@ public class Login extends javax.swing.JFrame {
                                 //En el estado 2, es para el vendedor, y solo tiene acceso a la venta de productos
                                 String nombre = Usuarios.getJSONObject("0").get("nombre").toString();
                                 lblResuCon.setText("Bienvenid@: " + nombre);
+                                setEstado(2);
                                 Menu ventana = new Menu();
                                 ventana.setVisible(true);
                                 ventana.deshabilitarMenusVendedor();
+                                
                             }
                             else if(estadoBase.contains("3"))
                             {
                                 String nombre = Usuarios.getJSONObject("0").get("nombre").toString();
                                 lblResuCon.setText("Bienvenid@: "+ nombre);
+                                setEstado(3);
                                 Menu ventana = new Menu();
                                 ventana.setVisible(true);
                                 ventana.deshabilitarMenusOtro();
+                                
                             }
                         } else {
 
