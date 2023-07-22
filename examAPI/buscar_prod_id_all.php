@@ -2,7 +2,7 @@
 
 include 'conexion.php';
 	
-$Query = "select Nombre, Marca, Presentacion, Precio, Cantidad from registro_productos, productos_inventario;";
+$Query = "select * from registro_productos, productos_inventario";
 $Consulta = mysqli_query($conn,$Query);
 $arreglo= array();
 while($recibido=mysqli_fetch_assoc($Consulta))
