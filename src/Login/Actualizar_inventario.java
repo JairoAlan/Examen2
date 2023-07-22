@@ -26,11 +26,10 @@ public class Actualizar_inventario extends javax.swing.JFrame {
      * Creates new form Actualizar_inventario
      */
     FondoPanel fondo = new FondoPanel();
-    Menu ventana = new Menu();
-    Login obj = new Login();
+
 
     public Actualizar_inventario() {
-        this.setLocationRelativeTo(null);
+        
         this.setContentPane(fondo);
         initComponents();
         llenarJtable();
@@ -296,7 +295,7 @@ public class Actualizar_inventario extends javax.swing.JFrame {
                 } catch (Exception e) {
 
                 }
-                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
             }
         });
 
@@ -306,11 +305,8 @@ public class Actualizar_inventario extends javax.swing.JFrame {
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         // Regresa al menu
-
+        this.setVisible(false);
         
-        
-
-
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     /**

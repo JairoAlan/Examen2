@@ -27,7 +27,7 @@ public class Login extends javax.swing.JFrame {
     }
     
     public Login() {
-        this.setLocationRelativeTo(null);
+        
         initComponents();
     }
 
@@ -133,11 +133,10 @@ public class Login extends javax.swing.JFrame {
                                 //Da la bienvenida en un label que esta en el login
                                 lblResuCon.setText("Bienvenid@: " + nombre);
                                 setEstado(1);
+                                System.out.println(getEstado());
                                 // Crea la ventana y la pone visible.
                                 Menu ventana = new Menu();
-                                ventana.setVisible(true);
-                                
-                                
+                                ventana.setVisible(true);  
                             }
                             else if(estadoBase.contains("2"))
                             {

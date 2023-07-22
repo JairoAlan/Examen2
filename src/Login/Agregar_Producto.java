@@ -29,7 +29,7 @@ public class Agregar_Producto extends javax.swing.JFrame {
     FondoPanel fondo = new FondoPanel();
     
     public Agregar_Producto() {
-        this.setLocationRelativeTo(null);
+        
         this.setContentPane(fondo);
         initComponents();
     }
@@ -53,6 +53,7 @@ public class Agregar_Producto extends javax.swing.JFrame {
         txtMarca = new javax.swing.JTextField();
         txtPrecio = new javax.swing.JTextField();
         btnRegistrar = new javax.swing.JButton();
+        btnRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,6 +85,14 @@ public class Agregar_Producto extends javax.swing.JFrame {
             }
         });
 
+        btnRegresar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btnRegresar.setText("Regresar");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -107,8 +116,10 @@ public class Agregar_Producto extends javax.swing.JFrame {
                                     .addComponent(txtPresen, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
                                     .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(188, 188, 188)
-                        .addComponent(btnRegistrar)))
+                        .addGap(93, 93, 93)
+                        .addComponent(btnRegistrar)
+                        .addGap(74, 74, 74)
+                        .addComponent(btnRegresar)))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -133,9 +144,11 @@ public class Agregar_Producto extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5)
                     .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
-                .addComponent(btnRegistrar)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRegistrar)
+                    .addComponent(btnRegresar))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         pack();
@@ -164,6 +177,11 @@ public class Agregar_Producto extends javax.swing.JFrame {
         cliente.excecute("http://localhost/examAPI/index.php?Nombre="+nombre+"&Marca="+marca+"&Presentacion="+presen+"&Precio="+precio+"");
         
     }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        // Regresa al menu
+        this.setVisible(false);
+    }//GEN-LAST:event_btnRegresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,6 +237,7 @@ public class Agregar_Producto extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistrar;
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
