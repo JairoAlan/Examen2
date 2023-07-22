@@ -7,7 +7,7 @@ if(isset($_REQUEST['Id_Prod']))
 	$Id_Prod=$_REQUEST['Id_Prod'];
 	
 	
-	$Query = "select Nombre, Marca, Presentacion, Precio, Cantidad from registro_productos, actualizacion_inventario where registro_productos.Id_Prod = '$Id_Prod'";
+	$Query = "select R.Nombre, R.Marca, R.Presentacion, R.Precio, P.Cantidad from registro_productos R, productos_inventario P where R.Id_Prod = '$Id_Prod'";
 	$Consulta = mysqli_query($conn,$Query);
 	$arreglo= array();
 	while($recibido=mysqli_fetch_assoc($Consulta))

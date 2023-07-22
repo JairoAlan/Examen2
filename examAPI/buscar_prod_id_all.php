@@ -2,7 +2,8 @@
 
 include 'conexion.php';
 	
-$Query = "select * from registro_productos, productos_inventario";
+$Query = "SELECT R.Id_Prod, R.Nombre, R.Marca, R.Presentacion, R.Precio, P.Cantidad FROM registro_productos R
+          INNER JOIN productos_inventario P ON R.Id_Prod = P.Id_Prod";
 $Consulta = mysqli_query($conn,$Query);
 $arreglo= array();
 while($recibido=mysqli_fetch_assoc($Consulta))
