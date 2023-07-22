@@ -253,10 +253,11 @@ public class Actualizar_inventario extends javax.swing.JFrame {
                 // Este método se llama cuando la solicitud HTTP se completa
                 if (status.isSuccess()) {
                     JOptionPane.showMessageDialog(null, "Éxito, se guardó correctamente en la Base de datos.");
+                    llenarJtable();
                 } else {
                     JOptionPane.showMessageDialog(null, "Error al guardar en la Base de datos. ");
                 }
-                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
             }
         });
 
@@ -264,7 +265,6 @@ public class Actualizar_inventario extends javax.swing.JFrame {
         String cantidad = txtCantidad_Prod.getText().toString();
 
         cliente.excecute("http://localhost/examAPI/actualizar.php?Id_Prod=" + idProd + "&Cantidad=" + cantidad + "");
-
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btmBusProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmBusProdActionPerformed
@@ -282,7 +282,7 @@ public class Actualizar_inventario extends javax.swing.JFrame {
                     String precioBase = producto.getJSONObject("0").get("Precio").toString();
                     String cantidadBase = producto.getJSONObject("0").get("Cantidad").toString();
 
-                    if (nombreBase != null && marcaBase != null && presenBase != null && precioBase != null) {
+                    if (nombreBase != null && marcaBase != null && presenBase != null && precioBase != null && cantidadBase != null) {
                         lblNombre.setText(nombreBase);
                         lblMarca.setText(marcaBase);
                         lblPresen.setText(presenBase);
