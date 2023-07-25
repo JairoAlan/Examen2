@@ -21,7 +21,7 @@ public class Menu extends javax.swing.JFrame {
     FondoPanel fondo = new FondoPanel();
 
     public Menu() {
-        this.setLocationRelativeTo(null);
+        
         this.setContentPane(fondo);
         initComponents();
     }
@@ -40,7 +40,7 @@ public class Menu extends javax.swing.JFrame {
         menu_AgUs = new javax.swing.JMenuItem();
         menu_Ag_Pro = new javax.swing.JMenuItem();
         menu_Act_Inv = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        menu_ActInv = new javax.swing.JMenuItem();
         menu_vent = new javax.swing.JMenu();
         menu_Ven_Prod = new javax.swing.JMenuItem();
         Menu_Consultas = new javax.swing.JMenu();
@@ -77,14 +77,14 @@ public class Menu extends javax.swing.JFrame {
         menu_Act_Inv.setText("Actualizacion ");
         menu_Act_Inv.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
 
-        jMenuItem1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jMenuItem1.setText("Actualizar Inventario");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        menu_ActInv.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        menu_ActInv.setText("Actualizar Inventario");
+        menu_ActInv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                menu_ActInvActionPerformed(evt);
             }
         });
-        menu_Act_Inv.add(jMenuItem1);
+        menu_Act_Inv.add(menu_ActInv);
 
         jMenuBar1.add(menu_Act_Inv);
 
@@ -147,42 +147,42 @@ public class Menu extends javax.swing.JFrame {
         // Abre El submenu Agregar_Usuario
         Agregar_Producto ventana = new Agregar_Producto();
         ventana.setVisible(true);
-        this.setVisible(false);
+        
     }//GEN-LAST:event_menu_Ag_ProActionPerformed
 
     private void menu_AgUsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_AgUsActionPerformed
         // Abre el submenu Regitrar
         Regitrar ventana = new Regitrar();
         ventana.setVisible(true);
-        this.setVisible(false);
+        
     }//GEN-LAST:event_menu_AgUsActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void menu_ActInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_ActInvActionPerformed
         // Abre el submenu Actualizar_inventario
         Actualizar_inventario ventana = new Actualizar_inventario();
         ventana.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+        
+    }//GEN-LAST:event_menu_ActInvActionPerformed
 
     private void menu_Ven_ProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_Ven_ProdActionPerformed
         //Abre el submenu Venta, para la venta de productos
         Venta ventana = new Venta();
         ventana.setVisible(true);
-        this.setVisible(false);
+        
     }//GEN-LAST:event_menu_Ven_ProdActionPerformed
 
     private void menu_Consul_ProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_Consul_ProdActionPerformed
         // Abre el submenu de consulta productos
         Consulta_Prod ventana = new Consulta_Prod();
         ventana.setVisible(true);
-        this.setVisible(false);
+        
     }//GEN-LAST:event_menu_Consul_ProdActionPerformed
 
     private void menu_Consul_UsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_Consul_UsuActionPerformed
         // Abre el submenu de consulta de usuarios
         Consulta_Usuarios ventana = new Consulta_Usuarios();
         ventana.setVisible(true);
-        this.setVisible(false);
+        
     }//GEN-LAST:event_menu_Consul_UsuActionPerformed
 
     /**
@@ -255,7 +255,7 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Menu_Consultas;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem menu_ActInv;
     private javax.swing.JMenu menu_Act_Inv;
     private javax.swing.JMenuItem menu_AgUs;
     private javax.swing.JMenuItem menu_Ag_Pro;
