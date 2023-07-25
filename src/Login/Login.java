@@ -15,7 +15,10 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
+    
+    
     public Login() {
+        
         initComponents();
     }
 
@@ -28,10 +31,6 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel5 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        txtEstado = new javax.swing.JTextField();
         lblResuCon = new javax.swing.JLabel();
         txtClave = new javax.swing.JPasswordField();
         btnIngresar = new javax.swing.JButton();
@@ -41,25 +40,6 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel5.setText("Estado 3 = Otro");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
-
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel4.setText("Estado 2 = Vendedor");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
-
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel3.setText("Estado 1 = Admin");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-
-        txtEstado.setForeground(new java.awt.Color(153, 153, 153));
-        txtEstado.setText("Estado");
-        getContentPane().add(txtEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, 70, -1));
 
         lblResuCon.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         lblResuCon.setForeground(new java.awt.Color(204, 204, 204));
@@ -82,7 +62,7 @@ public class Login extends javax.swing.JFrame {
         txtUser.setForeground(new java.awt.Color(153, 153, 153));
         txtUser.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtUser.setText("Escribe el Usuario");
-        getContentPane().add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 120, -1));
+        getContentPane().add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 220, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Log-1.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, -1, -1));
@@ -112,7 +92,7 @@ public class Login extends javax.swing.JFrame {
                         // Si los textfields tienen esos datos y las variables tambien...
                         if (txtUser.getText().toString().equals(usuarioBase)
                                 && txtClave.getText().toString().equals(claveBase)
-                                && txtEstado.getText().toString().equals(estadoBase)) {
+                                ) {
                             //Verifica tambien el estado y los clasifica, 1 = admin, 2 0 Vendedor, 3 = otro...
                             if (estadoBase.contains("1")) 
                             {
@@ -122,8 +102,7 @@ public class Login extends javax.swing.JFrame {
                                 lblResuCon.setText("Bienvenid@: " + nombre);
                                 // Crea la ventana y la pone visible.
                                 Menu ventana = new Menu();
-                                ventana.setVisible(true);
-                                
+                                ventana.setVisible(true);  
                             }
                             else if(estadoBase.contains("2"))
                             {
@@ -133,14 +112,16 @@ public class Login extends javax.swing.JFrame {
                                 Menu ventana = new Menu();
                                 ventana.setVisible(true);
                                 ventana.deshabilitarMenusVendedor();
+                                
                             }
                             else if(estadoBase.contains("3"))
                             {
                                 String nombre = Usuarios.getJSONObject("0").get("nombre").toString();
-                                lblResuCon.setText("Bienvenid@: "+ nombre);
+                                lblResuCon.setText("Bienvenid@: "+ nombre);  
                                 Menu ventana = new Menu();
                                 ventana.setVisible(true);
                                 ventana.deshabilitarMenusOtro();
+                                
                             }
                         } else {
 
@@ -200,12 +181,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton btnIngresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel lblResuCon;
     private javax.swing.JPasswordField txtClave;
-    private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 }
