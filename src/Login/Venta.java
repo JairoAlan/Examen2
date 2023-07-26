@@ -34,7 +34,7 @@ public class Venta extends javax.swing.JFrame {
     // Arreglos para guardar los valores de los productos y cantidades ingresadas
     ArrayList<Integer> idPro = new ArrayList();
     ArrayList<Integer> cant = new ArrayList();
-    
+
     public Venta() {
 
         this.setContentPane(fondo);
@@ -384,10 +384,10 @@ public class Venta extends javax.swing.JFrame {
         //for (int i = 0; i < idPro.size() ; i++) {
         //    System.out.print(" " + i + " " + idPro.get(i));
         //    System.out.print(" " + i + " " + cant.get(i));
-         //}
+        //}
         // Llena la Tabla
         llenarJtable();
-          
+
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btmTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmTotalActionPerformed
@@ -408,7 +408,7 @@ public class Venta extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) jTable_Prod.getModel();
         model.setRowCount(0);
         //Borra los items del los array.
-        for (int i = 0; i < idPro.size() ; i++) {
+        for (int i = 0; i < idPro.size(); i++) {
             System.out.print(" " + i + " " + idPro.remove(i));
             System.out.print(" " + i + " " + cant.remove(i));
         }
@@ -428,7 +428,6 @@ public class Venta extends javax.swing.JFrame {
             public void onComplete(Response status) {
                 // Este método se llama cuando la solicitud HTTP se completa
                 if (status.isSuccess()) {
-                    JOptionPane.showMessageDialog(null, "Se realizo la compra");
                     
                 } else {
                     JOptionPane.showMessageDialog(null, "Error No hay suficientes articulos para la venta.");
@@ -437,8 +436,16 @@ public class Venta extends javax.swing.JFrame {
             }
         });
         // Este for realiza la compra.
-        for (int i = 0; i < idPro.size() ; i++) {
+        for (int i = 0; i < idPro.size(); i++) {
             cliente.excecute("http://localhost/examAPI/venta.php?Id_Prod=" + idPro.get(i) + "&Cantidad=" + cant.get(i) + "");
+        }
+        JOptionPane.showMessageDialog(null, "Se realizo la compra");
+        // Este for inserta los datos de la compra en la base de datos en "notas"
+        for (int i = 0; i < jTable_Prod.getRowCount(); i++) {
+            cliente.excecute("http://localhost/examAPI/nota.php?nombre="+jTable_Prod.getValueAt(i, 0).toString()+
+                    "&marca="+jTable_Prod.getValueAt(i, 2).toString()+"&precio="+jTable_Prod.getValueAt(i, 3)+
+                    "&cantidad="+jTable_Prod.getValueAt(i, 4)+"&subtotal="+jTable_Prod.getValueAt(i, 5)+
+                    "&total="+lblTotal.getText().toString()+"");
         }
     }//GEN-LAST:event_btnCompraActionPerformed
 
