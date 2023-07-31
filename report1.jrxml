@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="200" pageHeight="825" columnWidth="160" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="df73b57b-da97-49e6-8a0b-8fbd7d9aef40">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="232"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<field name="jnombre" class="java.lang.String"/>
+	<field name="jmarca" class="java.lang.String"/>
+	<field name="jprecio" class="java.lang.String"/>
+	<field name="jcantidad" class="java.lang.String"/>
+	<field name="jsubtotal" class="java.lang.String"/>
+	<field name="jtotal" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="0" y="0" width="123" height="18" forecolor="#333333" uuid="413ea5a4-eca6-4dcf-9cf7-884470d0887e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Jairo Alan Castelan Fernandez]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="0" y="18" width="63" height="11" forecolor="#000000" uuid="676db474-cfb3-42b4-8ff1-afd19045ede3"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Punto de Venta]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="37" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="2619a3ce-7b3a-49f3-aba9-99a9fad73b81"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="0" y="17" width="22" height="18" uuid="59ab47d2-9864-41d3-b047-9c22a89d66bd"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="22" y="17" width="31" height="18" uuid="796834ca-72eb-4b31-ab11-471fd933c37c"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Marca:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="53" y="17" width="21" height="18" uuid="d04ecac8-f8f7-4c36-a15b-2852eaba9131"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Precio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="74" y="17" width="22" height="18" uuid="ae87720d-3ca2-4a91-9b12-fe4bcb4d1722"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="97" y="17" width="26" height="18" uuid="2f7b4905-4958-4279-8aa6-f4435ca7a1e0"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[SubTotal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="124" y="17" width="36" height="18" uuid="c463dedf-d76c-47de-949a-60caa48a10e3"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[TOTAL:]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="58" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="172a2c32-fdff-430e-af33-dcc48cbe1c80"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="0" y="17" width="22" height="19" uuid="20ecf959-1642-420b-bf4d-f92a4f7c13e7"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jnombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="22" y="17" width="31" height="20" uuid="0f7a4c81-c71f-42b5-b947-e8a85202c902"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jmarca}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="53" y="17" width="21" height="19" uuid="36024502-eb9d-4856-b906-13f7ee9eec84"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jprecio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="17" width="11" height="20" uuid="ff5e11d1-f657-425c-931f-7999860c9718"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jcantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="96" y="17" width="27" height="19" uuid="10648cd4-a171-4025-adb0-a54ad8963b48"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jsubtotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="135" y="17" width="25" height="20" uuid="3a5b2f74-3d04-4e78-8376-21068c75d021"/>
+				<textElement textAlignment="Right">
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jtotal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="16ceaf38-7f89-4990-9d17-a18d564ed2e9"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy HH.mm.ss">
+				<reportElement x="0" y="10" width="33" height="10" uuid="519c8e87-517e-4132-b62e-f2b855da4780"/>
+				<textElement>
+					<font size="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
