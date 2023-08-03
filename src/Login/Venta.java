@@ -389,7 +389,7 @@ public class Venta extends javax.swing.JFrame {
                         lbl_Precio.setText(precioBase);
                         lbl_cant.setText(cantidadBase);
 
-                    } 
+                    }
 
                 } catch (Exception e) {
                     // Si no encuentra el numero en la base de datos imprime el siguiente mensaje.
@@ -405,18 +405,22 @@ public class Venta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        // Agrega lo que hay en los textFields a sus respectivos diccionarios
-        // esto se hace para que despues en la llamada a la api se vayan ingresando.
-        idPro.add(Integer.parseInt(txtId_Prod.getText()));
-        cant.add(Integer.parseInt(txtCant_Compra.getText()));
-        // Este for es para solo Prueba de que se guarden los datos en los arreglos
-        //for (int i = 0; i < idPro.size() ; i++) {
-        //    System.out.print(" " + i + " " + idPro.get(i));
-        //    System.out.print(" " + i + " " + cant.get(i));
-        //}
-        // Llena la Tabla
-        llenarJtable();
-
+        // Compara la cantidad que hay en existencia con lo que se quiere vender
+        if (Integer.parseInt(lbl_cant.getText()) < Integer.parseInt(txtCant_Compra.getText())) {
+            JOptionPane.showMessageDialog(null, "No hay suficientes para venderle, modifica la cantidad de venta");
+        } else {
+            // Agrega lo que hay en los textFields a sus respectivos diccionarios
+            // esto se hace para que despues en la llamada a la api se vayan ingresando.
+            idPro.add(Integer.parseInt(txtId_Prod.getText()));
+            cant.add(Integer.parseInt(txtCant_Compra.getText()));
+            // Este for es para solo Prueba de que se guarden los datos en los arreglos
+            //for (int i = 0; i < idPro.size() ; i++) {
+            //    System.out.print(" " + i + " " + idPro.get(i));
+            //    System.out.print(" " + i + " " + cant.get(i));
+            //}
+            // Llena la Tabla
+            llenarJtable();
+        }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btmTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmTotalActionPerformed
@@ -457,7 +461,7 @@ public class Venta extends javax.swing.JFrame {
             public void onComplete(Response status) {
                 // Este método se llama cuando la solicitud HTTP se completa
                 if (status.isSuccess()) {
-                    
+
                 } else {
                     JOptionPane.showMessageDialog(null, "Error No hay suficientes articulos para la venta.");
                 }
@@ -471,32 +475,36 @@ public class Venta extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Se realizo la compra");
         // Este for inserta los datos de la compra en la base de datos en "notas"
         for (int i = 0; i < jTable_Prod.getRowCount(); i++) {
-            cliente.excecute("http://localhost/examAPI/nota.php?nombre="+jTable_Prod.getValueAt(i, 0).toString()+
-                    "&marca="+jTable_Prod.getValueAt(i, 2).toString()+"&precio="+jTable_Prod.getValueAt(i, 3)+
-                    "&cantidad="+jTable_Prod.getValueAt(i, 4)+"&subtotal="+jTable_Prod.getValueAt(i, 5)+
-                    "&total="+lblTotal.getText().toString()+"");
+            cliente.excecute("http://localhost/examAPI/nota.php?nombre=" + jTable_Prod.getValueAt(i, 0).toString()
+                    + "&marca=" + jTable_Prod.getValueAt(i, 2).toString() + "&precio=" + jTable_Prod.getValueAt(i, 3)
+                    + "&cantidad=" + jTable_Prod.getValueAt(i, 4) + "&subtotal=" + jTable_Prod.getValueAt(i, 5)
+                    + "&total=" + lblTotal.getText().toString() + "");
         }
     }//GEN-LAST:event_btnCompraActionPerformed
 
     private void btnImprNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprNotaActionPerformed
-        // 
+        // Se crea una lista para guardar todos los "productos"
         ArrayList lista = new ArrayList();
-        
-        for(int i = 0; i <jTable_Prod.getRowCount();i++)
-        {
+        // Este for "recoge" los productos de el jtable y del Label
+        for (int i = 0; i < jTable_Prod.getRowCount(); i++) {
             listaProductos productos = new listaProductos(jTable_Prod.getValueAt(i, 0).toString(),
-            jTable_Prod.getValueAt(i, 2).toString(),jTable_Prod.getValueAt(i, 3).toString(),
-            jTable_Prod.getValueAt(i, 4).toString(),jTable_Prod.getValueAt(i, 5).toString(),
-            lblTotal.getText().toString());
-            
+                    jTable_Prod.getValueAt(i, 2).toString(), jTable_Prod.getValueAt(i, 3).toString(),
+                    jTable_Prod.getValueAt(i, 4).toString(), jTable_Prod.getValueAt(i, 5).toString(),
+                    lblTotal.getText().toString());
+            // lo agrega a la lista
             lista.add(productos);
         }
-        
+
         try {
+            // Se crea un "inputStream" que es una variable que guarda la direccion de donde esta el reporte
             FileInputStream inputStream = new FileInputStream("C:\\Users\\jairo\\Documents\\Examen2-main\\report1.jasper");
+            // Carga el reporte y lo guarda en una variable llamada "reporte"
             JasperReport reporte = (JasperReport) JRLoader.loadObject(inputStream);
-            JasperPrint jprint = JasperFillManager.fillReport(reporte, null,new JRBeanCollectionDataSource(lista));
+            // Con la ayuda de FillManager, inserta todo lo que tiene la lista en el reporte
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista));
+            // Crea la vista del documento
             JasperViewer.viewReport(jprint);
+            // Cierra la "conexion" que hace con la ubicacion del archivo
             inputStream.close();
         } catch (JRException ex) {
             Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);

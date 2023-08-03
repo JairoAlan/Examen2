@@ -193,7 +193,7 @@ public class Regitrar extends javax.swing.JFrame {
                 } else {
                     JOptionPane.showMessageDialog(null, "Error al guardar en la Base de datos. ");
                 }
-                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
             }
         });
         
