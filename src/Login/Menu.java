@@ -41,6 +41,7 @@ public class Menu extends javax.swing.JFrame {
         menu_Ag_Pro = new javax.swing.JMenuItem();
         menu_Act_Inv = new javax.swing.JMenu();
         menu_ActInv = new javax.swing.JMenuItem();
+        menu_Actualizar_Precio = new javax.swing.JMenuItem();
         menu_vent = new javax.swing.JMenu();
         menu_Ven_Prod = new javax.swing.JMenuItem();
         Menu_Consultas = new javax.swing.JMenu();
@@ -85,6 +86,15 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         menu_Act_Inv.add(menu_ActInv);
+
+        menu_Actualizar_Precio.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        menu_Actualizar_Precio.setText("Actualizar Precio");
+        menu_Actualizar_Precio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_Actualizar_PrecioActionPerformed(evt);
+            }
+        });
+        menu_Act_Inv.add(menu_Actualizar_Precio);
 
         jMenuBar1.add(menu_Act_Inv);
 
@@ -185,6 +195,12 @@ public class Menu extends javax.swing.JFrame {
         
     }//GEN-LAST:event_menu_Consul_UsuActionPerformed
 
+    private void menu_Actualizar_PrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_Actualizar_PrecioActionPerformed
+        // Abre el subMenu de Actualizar Precio
+        Actualizar_Precio ventana = new Actualizar_Precio();
+        ventana.setVisible(true);
+    }//GEN-LAST:event_menu_Actualizar_PrecioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -249,6 +265,7 @@ public class Menu extends javax.swing.JFrame {
         menu_reg.setEnabled(false);
         menu_vent.setEnabled(false);
         menu_Consul_Usu.setEnabled(false);
+        menu_Actualizar_Precio.setEnabled(false);
     }
 
 
@@ -257,6 +274,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem menu_ActInv;
     private javax.swing.JMenu menu_Act_Inv;
+    private javax.swing.JMenuItem menu_Actualizar_Precio;
     private javax.swing.JMenuItem menu_AgUs;
     private javax.swing.JMenuItem menu_Ag_Pro;
     private javax.swing.JMenuItem menu_Consul_Prod;

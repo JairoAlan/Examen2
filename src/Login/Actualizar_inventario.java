@@ -253,6 +253,13 @@ public class Actualizar_inventario extends javax.swing.JFrame {
                 // Este método se llama cuando la solicitud HTTP se completa
                 if (status.isSuccess()) {
                     JOptionPane.showMessageDialog(null, "Éxito, se guardó correctamente en la Base de datos.");
+                    txtId_Prod.setText("");
+                    txtCantidad_Prod.setText("");
+                    lblNombre.setText("");
+                    lblMarca.setText("");
+                    lblPresen.setText("");
+                    lblPrecio.setText("");
+                    lblCantEx.setText("");
                     llenarJtable();
                 } else {
                     JOptionPane.showMessageDialog(null, "Error al guardar en la Base de datos. ");

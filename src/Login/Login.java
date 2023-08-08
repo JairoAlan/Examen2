@@ -7,6 +7,7 @@ package Login;
 import com.devazt.networking.HttpClient;
 import com.devazt.networking.OnHttpRequestComplete;
 import com.devazt.networking.Response;
+import javax.swing.JOptionPane;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -15,10 +16,8 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
-    
-    
     public Login() {
-        
+
         initComponents();
     }
 
@@ -45,7 +44,7 @@ public class Login extends javax.swing.JFrame {
         lblResuCon.setForeground(new java.awt.Color(204, 204, 204));
         lblResuCon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblResuCon.setText("\"\"");
-        getContentPane().add(lblResuCon, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 280, 20));
+        getContentPane().add(lblResuCon, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 340, 20));
 
         txtClave.setText("1234");
         getContentPane().add(txtClave, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 220, -1));
@@ -82,7 +81,7 @@ public class Login extends javax.swing.JFrame {
                     try {
                         //Se crea un JSONObject que crea un usuario de un "Array o diccionario" que contiene los siguientes datos:
                         JSONObject Usuarios = new JSONObject(status.getResult());
-                        
+
                         // Obtiene el usuario y lo guarda en la variable de tipo string "usuarioBase"
                         String usuarioBase = Usuarios.getJSONObject("0").get("usuario").toString();
                         // Obtiene la clave y lo guarda en la variable de tipo string "claveBase"
@@ -91,50 +90,56 @@ public class Login extends javax.swing.JFrame {
                         String estadoBase = Usuarios.getJSONObject("0").get("estado").toString();
                         // Si los textfields tienen esos datos y las variables tambien...
                         if (txtUser.getText().toString().equals(usuarioBase)
-                                && txtClave.getText().toString().equals(claveBase)
-                                ) {
+                                && txtClave.getText().toString().equals(claveBase)) {
                             //Verifica tambien el estado y los clasifica, 1 = admin, 2 0 Vendedor, 3 = otro...
-                            if (estadoBase.contains("1")) 
-                            {
+                            if (estadoBase.contains("1")) {
                                 //El estado 1 es administrador, y tiene acceso a todos los menus
                                 String nombre = Usuarios.getJSONObject("0").get("nombre").toString();
                                 //Da la bienvenida en un label que esta en el login
-                                lblResuCon.setText("Bienvenid@: " + nombre);
+                                JOptionPane.showMessageDialog(null, "Bienvenid@" + nombre + " Administrador.");
+                                // Pone en blanco los Textfields
+                                txtUser.setText("");
+                                txtClave.setText("");
                                 // Crea la ventana y la pone visible.
                                 Menu ventana = new Menu();
-                                ventana.setVisible(true);  
-                            }
-                            else if(estadoBase.contains("2"))
-                            {
+                                ventana.setVisible(true);
+                            } else if (estadoBase.contains("2")) {
                                 //En el estado 2, es para el vendedor, y solo tiene acceso a la venta de productos
                                 String nombre = Usuarios.getJSONObject("0").get("nombre").toString();
-                                lblResuCon.setText("Bienvenid@: " + nombre);
+                                JOptionPane.showMessageDialog(null, "Bienvenid@ " + nombre + " Vendedor.");
+                                // Pone en blanco los Textfields
+                                txtUser.setText("");
+                                txtClave.setText("");
                                 Menu ventana = new Menu();
                                 ventana.setVisible(true);
                                 ventana.deshabilitarMenusVendedor();
-                                
-                            }
-                            else if(estadoBase.contains("3"))
-                            {
+
+                            } else if (estadoBase.contains("3")) {
                                 String nombre = Usuarios.getJSONObject("0").get("nombre").toString();
-                                lblResuCon.setText("Bienvenid@: "+ nombre);  
+                                JOptionPane.showMessageDialog(null, "Bienvenid@ " + nombre + " Otro.");
+                                // Pone en blanco los Textfields
+                                txtUser.setText("");
+                                txtClave.setText("");
                                 Menu ventana = new Menu();
                                 ventana.setVisible(true);
                                 ventana.deshabilitarMenusOtro();
-                                
                             }
                         } else {
 
+                            //JOptionPane.showMessageDialog(null, "Usuario o Contraseña incorrecto.");
                         }
 
                     } catch (JSONException e) {
+                        lblResuCon.setText("Usuario o Contraseña Incorrecta, Prueba de nuevo");
+                        txtUser.setText("");
+                        txtClave.setText("");
                     }
 
                 }
                 //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
             }
         });
-        
+
         //Estas variables guardan la informacion que ingresa el usuario en los textfield
         String usuario = txtUser.getText().toString();
         String clave = txtClave.getText().toString();
