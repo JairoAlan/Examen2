@@ -1,19 +1,59 @@
 <?php
 
-// API para registrar un producto y actualizar el inventario
-if (isset($_REQUEST['Nombre']) && isset($_REQUEST['Marca']) && isset($_REQUEST['Presentacion']) && isset($_REQUEST['Precio']))
-{
-	include'conexion.php';
-    // Obtiene los datos del requisito en la URL
+if (isset($_REQUEST['Id']) && isset($_REQUEST['Nombre']) && isset($_REQUEST['Marca']) && isset($_REQUEST['Presentacion']) && isset($_REQUEST['Precio'])) {
+    include 'conexion.php';
+    
+    $Id = $_REQUEST['Id'];
     $Nombre = $_REQUEST['Nombre'];
     $Marca = $_REQUEST['Marca'];
     $Presentacion = $_REQUEST['Presentacion'];
     $Precio = $_REQUEST['Precio'];
+    
+    // Preparar la consulta usando sentencia preparada para registrar el producto
+    $sql = "INSERT INTO registro_productos (Id_Prod, Nombre, Marca, Presentacion, Precio)
+            VALUES (?, ?, ?, ?, ?)";
+            
+    // Utilizar una sentencia preparada
+    $stmt = $conn->prepare($sql);
+    
+    // Enlazar los parámetros usando bind_param
+    $stmt->bind_param("isssd", $Id, $Nombre, $Marca, $Presentacion, $Precio);
+    
+    // Ejecutar la consulta preparada para registrar el producto
+    if ($stmt->execute()) {
+        echo "Producto registrado correctamente.";
+        
+        // Preparar la consulta usando sentencia preparada para insertar en productos_inventario
+        $sql = "INSERT INTO productos_inventario (Id_Prod, Cantidad)
+                VALUES (?, 0)";
+                
+        // Utilizar una nueva sentencia preparada para insertar en productos_inventario
+        $stmt_inventario = $conn->prepare($sql);
+        
+        // Enlazar los parámetros usando bind_param
+        $stmt_inventario->bind_param("i", $Id);
+        
+        // Ejecutar la consulta preparada para insertar en productos_inventario
+        if ($stmt_inventario->execute()) {
+            echo " Inventario actualizado.";
+        } else {
+            echo " Error al actualizar el inventario: " . $stmt_inventario->error;
+        }
+        
+        // Cerrar la consulta preparada para productos_inventario
+        $stmt_inventario->close();
+        
+    } else {
+        echo "Error al registrar el producto: " . $stmt->error;
+    }
+    
+    // Cerrar la consulta preparada para registro_productos
+    $stmt->close();
+}
 
-    // Inserta el producto en la tabla Registro_productos
-    $sql = "INSERT INTO registro_productos (Nombre, Marca, Presentacion, Precio)
-            VALUES ('$Nombre', '$Marca', '$Presentacion', $Precio)";
-    if ($conn->query($sql) === TRUE) {
+
+/*
+	if ($conn->query($sql) === TRUE) {
         $Id_Prod = $conn->insert_id;
 
         // Inserta el producto en la tabla Productos_inventario con cantidad 0
@@ -30,7 +70,7 @@ if (isset($_REQUEST['Nombre']) && isset($_REQUEST['Marca']) && isset($_REQUEST['
         // Error al registrar el producto
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
-}
+	*/
 /*
 // API para actualizar el inventario
 if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
