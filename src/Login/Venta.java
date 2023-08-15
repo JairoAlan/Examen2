@@ -131,6 +131,18 @@ public class Venta extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(204, 204, 204));
         jLabel6.setText("Llena los datos para poder realizar la venta:");
 
+        txtId_Prod.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtId_ProdKeyTyped(evt);
+            }
+        });
+
+        txtCant_Compra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCant_CompraKeyTyped(evt);
+            }
+        });
+
         btnAgregar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnAgregar.setText("Agregar Producto");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -390,13 +402,32 @@ public class Venta extends javax.swing.JFrame {
                         lbl_cant.setText(cantidadBase);
 
                     }
-
+                    //Aqui es para ir descontando las piezas del inventario con el jTable
+                    // Cree una variable "local" para que guarde la cantidad que ahi en el inventario
+                    int inven = Integer.parseInt(lbl_cant.getText());
+                    if (jTable_Prod.getRowCount() > 0) { //Verifica que haya filas en el jtable
+                        for (int i = 0; i < jTable_Prod.getRowCount(); i++) { // entra el for con el tamaño de cuantas filas
+                            // Evalua si hay nombres iguales con el label
+                            if (lblNom_Prod.getText().equals(jTable_Prod.getValueAt(i, 0))) { 
+                                //Creo una variable que contendra el valor del la cantidad del jTable
+                                int jtcant = Integer.parseInt(jTable_Prod.getValueAt(i, 4).toString());
+                                // Se hace la operacion
+                                inven = inven - jtcant;
+                                // Se "Asigna el nuevo valor que tendra el Label cantidad
+                                lbl_cant.setText(String.valueOf(inven));
+                                // Y se guarda el nuevo valor en la variable inicial.
+                                inven = Integer.parseInt(lbl_cant.getText());
+                            }
+                        }
+                    }
+                    
                 } catch (Exception e) {
                     // Si no encuentra el numero en la base de datos imprime el siguiente mensaje.
                     JOptionPane.showMessageDialog(null, "No hay en existencia el producto en la base de datos. ");
                     txtId_Prod.setText("");
                 }
                 //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
             }
         });
 
@@ -422,6 +453,7 @@ public class Venta extends javax.swing.JFrame {
             // Llena la Tabla
             llenarJtable();
         }
+
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btmTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmTotalActionPerformed
@@ -446,7 +478,13 @@ public class Venta extends javax.swing.JFrame {
             idPro.remove(i);
             cant.remove(i);
         }
-
+        txtId_Prod.setText("");
+        lblNom_Prod.setText("");
+        lblPres_Prod.setText("");
+        lblMarca.setText("");
+        lbl_Precio.setText("");
+        lbl_cant.setText("");
+        txtCant_Compra.setText("");
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
@@ -519,6 +557,29 @@ public class Venta extends javax.swing.JFrame {
             Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnImprNotaActionPerformed
+
+    private void txtCant_CompraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCant_CompraKeyTyped
+        // Aqui se controlara que solo se resiva caracteres numericos en el textfield
+        int key = evt.getKeyChar(); // Almacena el codigo ASCII
+        boolean numeros = key >= 48 && key <= 57; // Aqui empieza, del 0 al 9
+        boolean retro = key == 8; // Aqui esta latecla de retroceso
+        if (!numeros && !retro) {
+            JOptionPane.showMessageDialog(null, "Ingresa Numeros, NO CARACTERES.");
+            evt.consume();
+        }
+
+    }//GEN-LAST:event_txtCant_CompraKeyTyped
+
+    private void txtId_ProdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtId_ProdKeyTyped
+        // Aqui se controlara que solo se admitan numeros en el textfield
+        int key = evt.getKeyChar(); // Almacena el codigo ASCII
+        boolean numeros = key >= 48 && key <= 57; // Aqui empieza, del 0 al 9, tambien admite el retroseso
+        boolean retro = key == 8; // Aqui esta latecla de retroceso
+        if (!numeros && !retro) {
+            JOptionPane.showMessageDialog(null, "Ingresa Numeros, NO CARACTERES.");
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtId_ProdKeyTyped
 
     /**
      * @param args the command line arguments

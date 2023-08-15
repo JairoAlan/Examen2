@@ -54,6 +54,8 @@ public class Agregar_Producto extends javax.swing.JFrame {
         txtPrecio = new javax.swing.JTextField();
         btnRegistrar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        txtId = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,6 +95,10 @@ public class Agregar_Producto extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel6.setText("ID:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -105,6 +111,7 @@ public class Agregar_Producto extends javax.swing.JFrame {
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -114,7 +121,8 @@ public class Agregar_Producto extends javax.swing.JFrame {
                                     .addComponent(txtNombre)
                                     .addComponent(txtMarca)
                                     .addComponent(txtPresen, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
-                                    .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtId)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(93, 93, 93)
                         .addComponent(btnRegistrar)
@@ -125,11 +133,15 @@ public class Agregar_Producto extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(72, 72, 72)
+                .addGap(39, 39, 39)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -148,7 +160,7 @@ public class Agregar_Producto extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistrar)
                     .addComponent(btnRegresar))
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         pack();
@@ -173,8 +185,9 @@ public class Agregar_Producto extends javax.swing.JFrame {
         String marca = txtMarca.getText().toString();
         String presen = txtPresen.getText().toString();
         String precio = txtPrecio.getText().toString();
+        String id = txtId.getText().toString();
 
-        cliente.excecute("http://localhost/examAPI/index.php?Nombre="+nombre+"&Marca="+marca+"&Presentacion="+presen+"&Precio="+precio+"");
+        cliente.excecute("http://localhost/examAPI/index.php?Nombre="+nombre+"&Marca="+marca+"&Presentacion="+presen+"&Precio="+precio+"&Id="+id+"");
         
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
@@ -243,6 +256,8 @@ public class Agregar_Producto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPrecio;
